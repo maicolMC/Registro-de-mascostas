@@ -70,10 +70,27 @@ static int leerTextoObligatorio(const char *mensaje, char *destino, size_t capac
         quitarEspacios(destino);
         if (destino[0] == '\0') {
             printf("El campo no puede quedar vacio.\n");
+        } else if (strlen(destino) < 3) {
+            printf("El campo debe tener al menos 3 caracteres.\n");
         } else if (strchr(destino, '|') != NULL) {
             printf("No se permite el caracter | porque separa los campos del archivo.\n");
-        } else {
-            return 1;
+        } 
+        else {
+            ///* Rechazar si el texto solo tiene numeros*///
+            int soloNumeros = 1;
+            size_t i;
+
+            for (i = 0; destino[i] != '\0'; i++) {
+                if (!isdigit((unsigned char)destino[i]) && !isspace((unsigned char)destino[i])) {
+                    soloNumeros = 0;
+                    break;
+                }       
+            }
+            if (soloNumeros) {
+                printf("El campo no puede ser solo numeros.\n");
+            } else {
+                return 1;
+            }
         }
     } while (1);
 }

@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 int obtenerSiguienteId(const Mascota mascotas[], int cantidad) {
     int mayorId = 0;
@@ -16,6 +17,21 @@ int obtenerSiguienteId(const Mascota mascotas[], int cantidad) {
     return mayorId + 1;
 }
 
+////* Compara dos cadenas ignorando mayúsculas/minúsculas. *////
+static int strcmp_insensitive(const char *a, const char *b) {
+    while (*a && *b) {
+        char ca = (char)tolower((unsigned char)*a);
+        char cb = (char)tolower((unsigned char)*b);
+        if (ca != cb) {
+            return (unsigned char)ca - (unsigned char)cb;
+        }
+        a++;
+        b++;
+    }
+    return (unsigned char)tolower((unsigned char)*a) -
+           (unsigned char)tolower((unsigned char)*b);
+}
+
 int buscarPorDueno(const Mascota mascotas[], int cantidad, const char *nombreDueno,
                    int indices[], int capacidadIndices) {
     int encontradas = 0;
@@ -27,7 +43,7 @@ int buscarPorDueno(const Mascota mascotas[], int cantidad, const char *nombreDue
     }
 
     for (i = 0; i < cantidad; i++) {
-        if (strcmp(mascotas[i].nombreDueno, nombreDueno) == 0) {
+        if (strcmp_insensitive(mascotas[i].nombreDueno, nombreDueno) == 0) {
             if (encontradas < capacidadIndices) {
                 indices[encontradas] = i;
             }

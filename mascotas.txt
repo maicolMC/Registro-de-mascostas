@@ -1,0 +1,8 @@
+1|Chrissy|Gato|Mestiza|32|Anyabel
+2|Serafino|Gato|Mestizo|40|Sonia
+3|Porfirio|Gato|Mestizo|56|Alan
+4|Curly|Perro|Poodle|72|Fernanfloo
+5|Alma|Gato|Siames|4|Noelia
+6|Ange|Gato|Angora|20|Kelly
+7|Patricio|Gato|Mestizo|44|Laura
+8|Wallace|Hamster|Sirio|80|German
